@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Quick Math Challenge</string>
+    <string name="app_logo">Application Logo</string>
+
+    <!-- Home Screen -->
+    <string name="start_game">Start Game</string>
+    <string name="view_leaderboard">View Leaderboard</string>
+
+    <!-- Game Screen -->
+    <string name="score">Score</string>
+    <string name="_0">0</string>
+    <string name="time">Time</string>
+    <string name="_30">30</string>
+    <string name="solve_this">Solve this:</string>
+    <string name="_8_5">8 + 5 = ?</string>
+    <string name="_13">13</string>
+    <string name="_15">15</string>
+    <string name="_12">12</string>
+    <string name="_10">10</string>
+
+    <!-- Game Over Screen -->
+    <string name="game_over">Game Over!</string>
+    <string name="your_score">Your Score</string>
+    <string name="play_again">Play Again</string>
+    <string name="save_score">Save Score</string>
+
+    <!-- Game Over Screen -->
+    <string name="name">name</string>
+    <string name="_90">90</string>
+    <string name="_01_12_2025_15_06_03">01/12/2025 15:06:03</string>
+    <string name="clear_history">Clear History</string>
+    <string name="back_to_home">Back to Home</string>
+
+</resources>
