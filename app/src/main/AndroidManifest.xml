@@ -13,11 +13,12 @@
         android:theme="@style/Theme.AssignmentFourPartOne">
         <activity
             android:name=".LeaderboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AssignmentFourPartOne"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/LaunchTheme">
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +27,16 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AssignmentFourPartOne"/>
         <activity
             android:name=".GameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AssignmentFourPartOne"/>
         <activity
             android:name=".GameOverActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.AssignmentFourPartOne"/>
     </application>
 
 </manifest>

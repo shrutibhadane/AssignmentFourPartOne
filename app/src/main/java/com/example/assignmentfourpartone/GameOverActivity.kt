@@ -15,7 +15,7 @@ import kotlin.random.Random
 
 class GameOverActivity : AppCompatActivity() {
 
-    private lateinit var tvFinalScore: TextView
+    private lateinit var tvYourScoreValue: TextView
     private lateinit var btnPlayAgain: Button
     private lateinit var btnSaveScore: Button
 
@@ -23,13 +23,13 @@ class GameOverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
-        tvFinalScore = findViewById(R.id.tvFinalScore)
+        tvYourScoreValue = findViewById(R.id.tvYourScoreValue)
         btnPlayAgain = findViewById(R.id.btnPlayAgain)
         btnSaveScore = findViewById(R.id.btnSaveScore)
 
         // Get the final score from intent
         val finalScore = intent.getIntExtra("FINAL_SCORE", 0)
-        tvFinalScore.text = finalScore.toString()
+        tvYourScoreValue.text = finalScore.toString()
 
         // Play Again button
         btnPlayAgain.setOnClickListener {

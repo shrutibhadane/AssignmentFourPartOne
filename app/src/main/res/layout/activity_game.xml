@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/game_layout"
     android:layout_margin="20dp"
     android:gravity="center_vertical"
     android:orientation="vertical">
@@ -25,11 +26,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvScoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
+                android:textStyle="normal"
                 android:text="@string/score"
-                android:textColor="@android:color/black"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <TextView
@@ -52,11 +55,12 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTimerText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
                 android:text="@string/time"
-                android:textColor="@android:color/holo_red_dark"
+                android:textColor="@color/red_700"
                 android:textSize="14sp" />
 
             <TextView
@@ -64,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/_30"
-                android:textColor="@android:color/holo_red_dark"
+                android:textColor="@color/red_700"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -100,12 +104,14 @@
                 android:padding="32dp">
 
                 <TextView
+                    android:id="@+id/tvSolveThisTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:text="@string/solve_this"
-                    android:textColor="@color/purple_600"
-                    android:textSize="16sp" />
+                    android:textColor="@color/purple_700"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
 
                 <TextView
                     android:id="@+id/tvQuestion"

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -15,11 +16,9 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import kotlin.intArrayOf
-import kotlin.use
 
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [34])
+@Config(sdk = [28], application = android.app.Application::class)
 class SplashActivityTest {
 
     private lateinit var activity: SplashActivity
@@ -29,10 +28,13 @@ class SplashActivityTest {
 
     @Before
     fun setup() {
-        Robolectric.buildActivity(SplashActivity::class.java).use { controller ->
-            controller.setup()
-            activity = controller.get()
-        }
+        // Set the theme before creating the activity
+        val activityController = Robolectric.buildActivity(SplashActivity::class.java)
+        activityController.create().start().resume().visible()
+        activity = activityController.get()
+        
+        // Use setTheme to override with AppCompat theme
+        activity.setTheme(androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar)
 
         parent = activity.findViewById(R.id.splash_layout)
         imgLogo = activity.findViewById(R.id.logoImage)
@@ -61,7 +63,7 @@ class SplashActivityTest {
 
     // Layout Tests
     @Test
-    fun `parent layout should be ConstraintLayout`() {
+    fun `parent layout should be LinearLayout`() {
         val parent = appName.parent
         assertNotNull(parent)
         assertEquals(LinearLayout::class.java, parent.javaClass)
@@ -70,12 +72,14 @@ class SplashActivityTest {
     // Title TextView Tests
     @Test
     fun `title should have correct text`() {
-        assertEquals(R.string.app_name, appName.text.toString())
+        val expectedText = activity.getString(R.string.app_name)
+        assertEquals(expectedText, appName.text.toString())
     }
 
     @Test
     fun `title should have correct text color`() {
-        assertEquals(R.color.purple_700, appName.currentTextColor)
+        val expectedColor = ContextCompat.getColor(activity, R.color.purple_700)
+        assertEquals(expectedColor, appName.currentTextColor)
     }
 
     @Test
