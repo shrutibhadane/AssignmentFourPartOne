@@ -69,6 +69,18 @@ class SplashActivityTest {
         assertEquals(LinearLayout::class.java, parent.javaClass)
     }
 
+    // Logo ImageView Test
+    @Test
+    fun `logo should be visible`() {
+        assertEquals(View.VISIBLE, imgLogo.visibility)
+    }
+
+    @Test
+    fun `logo should use correct drawable`() {
+        val resId = org.robolectric.Shadows.shadowOf(imgLogo.drawable).createdFromResId
+        assertEquals(R.drawable.logo, resId)
+    }
+
     // Title TextView Tests
     @Test
     fun `title should have correct text`() {

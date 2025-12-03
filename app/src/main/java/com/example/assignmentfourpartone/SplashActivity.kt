@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setTheme(R.style.Theme_Splash) // switch to your main theme
         setContentView(R.layout.activity_splash)
 
         // Navigate to MainActivity after 2 seconds

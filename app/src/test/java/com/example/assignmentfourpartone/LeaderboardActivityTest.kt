@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -79,6 +80,25 @@ class LeaderboardActivityTest {
         assertEquals(LinearLayout::class.java, parent.javaClass)
     }
 
+    // RecyclerView Tests
+    @Test
+    fun `recyclerView should have layout manager assigned`() {
+        assertNotNull(recyclerViewScores.layoutManager)
+        assertEquals(LinearLayoutManager::class.java, recyclerViewScores.layoutManager!!::class.java)
+    }
+
+    @Test
+    fun `recyclerView should have adapter assigned`() {
+        assertNotNull(recyclerViewScores.adapter)
+    }
+
+    // RecyclerView layout params check (weight = 1)
+    @Test
+    fun `recyclerView should have correct layout weight`() {
+        val params = recyclerViewScores.layoutParams as LinearLayout.LayoutParams
+        assertEquals(1f, params.weight)
+    }
+
     // Leaderboard Score TextView Tests
     @Test
     fun `leaderboard score title should have correct text`() {
@@ -100,6 +120,11 @@ class LeaderboardActivityTest {
     @Test
     fun `leaderboard score title should have correct text style`() {
         assertEquals(Typeface.BOLD, tvLeaderboardTitle.typeface.style)
+    }
+
+    @Test
+    fun `leaderboard title text should be centered`() {
+        assertEquals(Gravity.CENTER, tvLeaderboardTitle.gravity)
     }
 
     // Clear History Button Tests
@@ -183,6 +208,24 @@ class LeaderboardActivityTest {
     @Test
     fun `back to home button should be clickable`() {
         assertEquals(true, btnBackHome.hasOnClickListeners())
+    }
+
+    // Toast Test when clearing scores
+    @Test
+    fun `clicking clear history should show toast`() {
+        btnClearHistory.performClick()
+
+        val latestToast = org.robolectric.shadows.ShadowToast.getTextOfLatestToast()
+        assertEquals("History cleared!", latestToast)
+    }
+
+    // Clear list data update
+    @Test
+    fun `clear history button should empty score list`() {
+        btnClearHistory.performClick()
+
+        val adapter = recyclerViewScores.adapter as ScoreAdapter
+        assertEquals(0, adapter.itemCount)
     }
 
     // Helper functions

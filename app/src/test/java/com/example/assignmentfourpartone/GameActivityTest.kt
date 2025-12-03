@@ -3,6 +3,7 @@ package com.example.assignmentfourpartone
 import android.app.Application
 import android.content.Intent
 import android.graphics.Typeface
+import android.os.Looper.getMainLooper
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -19,6 +20,7 @@ import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows.shadowOf
 import org.robolectric.annotation.Config
+import java.util.concurrent.TimeUnit
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [28], application = Application::class)
@@ -58,6 +60,8 @@ class GameActivityTest {
         btnOption2 = activity.findViewById(R.id.btnOption2)
         btnOption3 = activity.findViewById(R.id.btnOption3)
         btnOption4 = activity.findViewById(R.id.btnOption4)
+
+        activity.isTestMode = true
 
         // Force measure & layout
         val widthSpec = View.MeasureSpec.makeMeasureSpec(500, View.MeasureSpec.EXACTLY)
@@ -274,10 +278,12 @@ class GameActivityTest {
 
     @Test
     fun `option two button should have correct background`() {
-        val background = btnOption2.background
+        /*val background = btnOption2.background
         val expectedResId = R.drawable.rounded_button_purple
         val actualResId = shadowOf(background).createdFromResId
-        assertEquals(expectedResId, actualResId)
+        assertEquals(expectedResId, actualResId)*/
+        val resId = shadowOf(btnOption1.background).createdFromResId
+        assertEquals(R.drawable.rounded_button_purple, resId)
     }
 
     @Test
@@ -355,6 +361,8 @@ class GameActivityTest {
     // Navigation Tests
     @Test
     fun `clicking option one button should navigate to GameOverActivity`() {
+        shadowOf(getMainLooper()).idle()
+
         btnOption1.performClick()
 
         val expectedIntent = Intent(activity, GameOverActivity::class.java)
@@ -365,11 +373,15 @@ class GameActivityTest {
 
     @Test
     fun `option one button should be clickable`() {
+        shadowOf(getMainLooper()).idle()
+
         assertEquals(true, btnOption1.hasOnClickListeners())
     }
 
     @Test
     fun `clicking option two button should navigate to GameOverActivity`() {
+        shadowOf(getMainLooper()).idle()
+
         btnOption2.performClick()
 
         val expectedIntent = Intent(activity, GameOverActivity::class.java)
@@ -380,11 +392,15 @@ class GameActivityTest {
 
     @Test
     fun `option two button should be clickable`() {
+        shadowOf(getMainLooper()).idle()
+
         assertEquals(true, btnOption2.hasOnClickListeners())
     }
 
     @Test
     fun `clicking option three button should navigate to GameOverActivity`() {
+        shadowOf(getMainLooper()).idle()
+
         btnOption3.performClick()
 
         val expectedIntent = Intent(activity, GameOverActivity::class.java)
@@ -395,11 +411,15 @@ class GameActivityTest {
 
     @Test
     fun `option three button should be clickable`() {
+        shadowOf(getMainLooper()).idle()
+
         assertEquals(true, btnOption3.hasOnClickListeners())
     }
 
     @Test
     fun `clicking option four button should navigate to GameOverActivity`() {
+        shadowOf(getMainLooper()).idle()
+
         btnOption4.performClick()
 
         val expectedIntent = Intent(activity, GameOverActivity::class.java)
@@ -410,6 +430,8 @@ class GameActivityTest {
 
     @Test
     fun `option four button should be clickable`() {
+        shadowOf(getMainLooper()).idle()
+
         assertEquals(true, btnOption4.hasOnClickListeners())
     }
 

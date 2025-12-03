@@ -38,6 +38,11 @@ class GameOverActivity : AppCompatActivity() {
             finish()
         }
 
+        /*Toast.makeText(this, "Score saved $isInserted", Toast.LENGTH_SHORT).show()
+           val intent = Intent(this, LeaderboardActivity::class.java)
+           startActivity(intent)
+           finish()*/
+
         btnSaveScore.setOnClickListener {
             val currentDateTime =
                 SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault()).format(Date())
@@ -45,12 +50,7 @@ class GameOverActivity : AppCompatActivity() {
             val db = ScoreDatabaseHelper(this)
             val isInserted = db.insertScore("Shruti", finalScore, currentDateTime)
 
-            Toast.makeText(this, "Score saved $isInserted", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LeaderboardActivity::class.java)
-            startActivity(intent)
-            finish()
-
-            /*if (isInserted) {
+            if (isInserted) {
                 Toast.makeText(this, "Score saved", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, LeaderboardActivity::class.java)
@@ -59,7 +59,7 @@ class GameOverActivity : AppCompatActivity() {
 
             } else {
                 Toast.makeText(this, "Failed to save score", Toast.LENGTH_SHORT).show()
-            }*/
+            }
         }
 
     }

@@ -21,14 +21,16 @@ class ScoreDatabaseHelper(context: Context?) :
         onCreate(db)
     }
 
-    // Insert score
-    fun insertScore(name: String?, score: Int, date: String?) {
-        val db = this.writableDatabase
-        val values = ContentValues()
-        values.put("name", name)
-        values.put("score", score)
-        values.put("date", date)
-        db.insert(TABLE_NAME, null, values)
+    fun insertScore(playerName: String, score: Int, date: String): Boolean {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put("name", playerName)
+            put("score", score)
+            put("date", date)
+        }
+
+        val result = db.insert(TABLE_NAME, null, contentValues)
+        return result != -1L
     }
 
     val topScores: Cursor

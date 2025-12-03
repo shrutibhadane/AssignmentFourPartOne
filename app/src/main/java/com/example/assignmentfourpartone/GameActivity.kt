@@ -19,12 +19,13 @@ class GameActivity : AppCompatActivity() {
     private lateinit var btnOption2: Button
     private lateinit var btnOption3: Button
     private lateinit var btnOption4: Button
-
     private var score = 0
     private var correctAnswer = 0
     private var timeLeft = 30
     private var timer: CountDownTimer? = null
     private val optionButtons = mutableListOf<Button>()
+
+    var isTestMode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +56,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun startTimer() {
+        if (isTestMode) return
         timer = object : CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timeLeft = (millisUntilFinished / 1000).toInt()

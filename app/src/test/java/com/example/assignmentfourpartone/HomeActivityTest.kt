@@ -130,6 +130,12 @@ class HomeActivityTest {
         assertEquals(Gravity.CENTER, btnStartGame.gravity)
     }
 
+    @Test
+    fun `start game button should have correct margin`() {
+        val params = btnStartGame.layoutParams as LinearLayout.LayoutParams
+        assertEquals(dpToPx(16), params.bottomMargin)
+    }
+
     // View Leaderboard Button Tests
     @Test
     fun `View Leaderboard button should have correct text`() {
@@ -190,6 +196,18 @@ class HomeActivityTest {
     @Test
     fun `view leaderboard button should be clickable`() {
         assertEquals(true, btnViewLeaderboard.hasOnClickListeners())
+    }
+
+    @Test
+    fun `buttons should be focusable for accessibility`() {
+        assertEquals(true, btnStartGame.isFocusable)
+        assertEquals(true, btnViewLeaderboard.isFocusable)
+    }
+
+    @Test
+    fun `activity should finish when finish is called`() {
+        activity.finish()
+        assertEquals(true, activity.isFinishing)
     }
 
     // Helper functions
